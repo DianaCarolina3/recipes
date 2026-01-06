@@ -94,6 +94,9 @@ model Ingredient {
   unit     String? @db.VarChar(50)
   recipeId String  @db.Char(36)
   recipe   Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  // No duplicar nombre en cada receta
+  @@unique([recipeId, name])
 }
 
 model Step {
@@ -102,4 +105,7 @@ model Step {
   description String @db.Text
   recipeId    String @db.Char(36)
   recipe      Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  // No duplicar pasos en cada receta
+  @@unique([recipeId, order])
 }

@@ -102,7 +102,7 @@ export class UserController {
             _req.validatedBody!,
          );
 
-         return res.status(200).json(updatedUser);
+         return response.success(_req, res, updatedUser, 200);
       } catch (err) {
          return next(err);
       }
@@ -122,7 +122,7 @@ export class UserController {
 
          const userDeleted: string | void = await this.userService.deleteUser(params.id);
 
-         return res.status(200).json(userDeleted);
+         return response.success(_req, res, userDeleted, 200);
       } catch (err) {
          return next(err);
       }

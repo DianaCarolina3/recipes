@@ -25,12 +25,6 @@ export const userSchema = z.object({
 
 // input = lo que recibo del cliente
 
-export const idSchema = z
-   .object({
-      id: z.uuid(),
-   })
-   .refine((data) => data.id, { message: 'Id is required' });
-
 // pick solo usa name y lastname del userSchema
 export const nameAndLastnameSchema = userSchema
    .pick({ name: true, lastname: true })

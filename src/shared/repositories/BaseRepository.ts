@@ -24,7 +24,7 @@ export class BaseRepository<TModel> {
    async delete(id: string): Promise<TModel> {
       const result = await this.modelDelegate.delete({ where: { id: id } });
       if (result === null) {
-         throw new Errors('Error deleting user', 500);
+         throw new Errors('Error deleting', 500);
       }
       return result;
    }

@@ -3,12 +3,8 @@ import { UserController } from './user.controller.js';
 import { UserService } from './user.service.js';
 import { UserRepository } from './user.repository.js';
 import { validate, validateOpcional } from '../../core/middlewares/validation.middleware.js';
-import {
-   idSchema,
-   nameAndLastnameSchema,
-   userCreateSchema,
-   userUpdateSchema,
-} from './user.schema.js';
+import { nameAndLastnameSchema, userCreateSchema, userUpdateSchema } from './user.schema.js';
+import { idSchema } from '../../shared/schemas/index.js';
 import { AuthService } from '../auth/auth.service.js';
 import { AuthRepository } from '../auth/auth.repository.js';
 import { authenticateJWT, authorizeRoles } from '../../core/middlewares/auth.middleware.js';

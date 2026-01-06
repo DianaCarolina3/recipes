@@ -24,7 +24,13 @@ export const validate = (schema: ZodSchema, target: TargetValidation) => {
 
          // limpiar los datos por si el cliente envia un "", null o campo vacio
          if (target === 'body') {
-            dataToValidate = cleanObject(dataToValidate);
+            const cleaned = cleanObject(dataToValidate);
+
+            // si viene un array con ingredients y steps no limpiamos los campos
+            if (dataToValidate.ingredients) cleaned.ingredients = dataToValidate.ingredients;
+            if (dataToValidate.steps) cleaned.steps = dataToValidate.steps;
+
+            dataToValidate = cleaned;
          }
 
          const validated = schema.parse(dataToValidate);
@@ -45,7 +51,7 @@ export const validate = (schema: ZodSchema, target: TargetValidation) => {
    };
 };
 
-// si la req es vacia no valida
+// si la req es vacia no valida para las query
 export const validateOpcional = (schema: ZodSchema, target: TargetValidation) => {
    return (_req: Request, res: Response, next: NextFunction) => {
       try {
@@ -56,7 +62,13 @@ export const validateOpcional = (schema: ZodSchema, target: TargetValidation) =>
          }
 
          if (target === 'body') {
-            dataToValidate = cleanObject(dataToValidate);
+            const cleaned = cleanObject(dataToValidate);
+
+            // si viene un array con ingredients y steps no limpiamos los campos
+            if (dataToValidate.ingredients) cleaned.ingredients = dataToValidate.ingredients;
+            if (dataToValidate.steps) cleaned.steps = dataToValidate.steps;
+
+            dataToValidate = cleaned;
          }
 
          const validated = schema.parse(dataToValidate);
