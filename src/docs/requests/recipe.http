@@ -1,0 +1,55 @@
+@host = localhost
+@port = 3000
+@resource=recipe
+@token=123.123.123
+
+### GET list recipes
+GET http://{{host}}:{{port}}/{{resource}}
+
+### GET recipe by id
+GET http://{{host}}:{{port}}/{{resource}}/3d6d5164-aa71-487e-aef8-2a0b532d0139
+
+### POST new recipe
+POST http://{{host}}:{{port}}/{{resource}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Arroz con pollo",
+  "description": "Receta clásica",
+  "prepTime": 15,
+  "cookTime": 30,
+  "servings": 4,
+  "difficulty": "medio",
+  "categoryId": "e76d5900-a874-40b5-83d5-57ac8c7d3092",
+  "ingredients": [
+    { "name": "Arroz", "quantity": "2", "unit": "tazas" },
+    { "name": "Pollo", "quantity": "media", "unit": "unidad" }
+  ],
+  "steps": [
+    { "order": 1, "description": "Calentar aceite" },
+    { "order": 2, "description": "Agregar arroz" }
+  ]
+}
+
+### PATCH update recipe
+PATCH http://{{host}}:{{port}}/{{resource}}/:id
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "categoryId": "53415d9c-15e5-4f75-9737-21d07f528284",
+  "ingredients": [
+    { "name": "Arroz", "quantity": "2", "unit": "tazas" },
+    { "name": "Pollo", "quantity": "media", "unit": "unidad" },
+    { "name": "Alverjas", "quantity": "media", "unit": "taza" }
+  ],
+  "steps": [
+    { "order": 1, "description": "Calentar aceite" },
+    { "order": 2, "description": "Agregar arroz" }
+  ]
+}
+
+### DELETE recipe
+DELETE http://{{host}}:{{port}}/{{resource}}/:id
+Authorization: Bearer {{token}}
