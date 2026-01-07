@@ -1,0 +1,12 @@
+@host = localhost
+@port = 3000
+@resource=auth
+
+### POST login
+POST http://{{host}}:{{port}}/{{resource}}/login
+Content-Type: application/json
+
+{
+  "email": "diana@email.com",
+  "password": "1234"
+}

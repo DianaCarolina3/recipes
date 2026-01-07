@@ -1,6 +1,7 @@
 @host = localhost
 @port = 3000
 @resource=users
+@token=123.123.123
 
 ### GET all users
 GET http://{{host}}:{{port}}/{{resource}}/
@@ -18,7 +19,7 @@ GET http://{{host}}:{{port}}/{{resource}}?lastname=garzon
 GET http://{{host}}:{{port}}/{{resource}}?name=henRy&lastname=Cordoba
 
 ### POST a new user
-POST http://{{host}}:{{port}}/{{resource}}
+POST http://{{host}}:{{port}}/{{resource}}/register
 Content-Type: application/json
 
 {
@@ -35,6 +36,7 @@ Content-Type: application/json
 ### PATCH a user exited
 PATCH http://{{host}}:{{port}}/{{resource}}/5305a5cf-3442-40f9-849b-6d8e2bca8317
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Henry",
@@ -47,3 +49,4 @@ Content-Type: application/json
 
 ### DELETE a user exited
 DELETE http://{{host}}:{{port}}/{{resource}}/13567d7f-b1ca-4198-a0ec-e02df4a1f59a
+Authorization: Bearer {{token}}
